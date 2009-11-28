@@ -10,7 +10,8 @@
 	},
 	"key": "@project.key@",
 	"prerequisites": {
-		"algid": "@prerequisites.algid@"
+		"algid": "@prerequisites.algid@",
+		"admin": "@prerequisites.admin@"
 	},
 	"requestSingletons": {
 	},

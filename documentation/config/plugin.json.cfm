@@ -10,6 +10,8 @@
 	},
 	"key": "documentation",
 	"prerequisites": {
+		"algid": "0.1.1",
+		"admin": "0.1.1"
 	},
 	"requestSingletons": {
 	},
