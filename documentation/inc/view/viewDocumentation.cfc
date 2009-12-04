@@ -14,8 +14,8 @@
 		<cfset datagrid.addBundle('plugins/documentation/i18n/inc/view', 'viewDocumentation') />
 		
 		<cfset datagrid.addColumn({
-				key = 'plugin',
-				label = 'plugin'
+				key = 'package',
+				label = 'package'
 			}) />
 		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />

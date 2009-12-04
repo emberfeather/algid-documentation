@@ -7,8 +7,6 @@
 		</api>
 		
 		<documentation position="main">
-			<list position="action"/>
-			
 			<display position="main">
 				<source position="main"/>
 			</display>

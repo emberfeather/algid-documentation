@@ -9,5 +9,7 @@
 		'inc.service',
 		'inc.view'
 	],
-	hidePrivateFunctions: true
+	showFunctionCode: false,
+	showPrivateFunctions: false,
+	showTableOfContents: true
 }
