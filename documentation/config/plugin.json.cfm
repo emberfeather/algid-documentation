@@ -2,8 +2,9 @@
 	"applicationSingletons": {
 	},
 	"applicationTransients": {
-		"modDocumentationForDocumentation": "plugins.documentation.inc.model.modDocumentation",
-		"viewDocumentationForDocumentation": "plugins.documentation.inc.view.viewDocumentation"
+		"modAPIForDocumentation": "plugins.documentation.inc.model.modAPI",
+		"servAPIForDocumentation": "plugins.documentation.inc.service.servAPI",
+		"viewAPIForDocumentation": "plugins.documentation.inc.view.viewAPI"
 	},
 	"i18n": {
 		"locales": [

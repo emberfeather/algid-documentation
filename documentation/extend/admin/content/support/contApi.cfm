@@ -1,4 +1,4 @@
-<cfset viewDocumentation = transport.theApplication.factories.transient.getViewDocumentationForDocumentation( transport ) />
+<cfset viewAPI = transport.theApplication.factories.transient.getViewAPIForDocumentation( transport ) />
 
 <div class="grid_6 alpha">
 	<h3>Plugin Packages</h3>
@@ -7,7 +7,7 @@
 	
 	<cfset plugins = transport.theApplication.app.getPlugins() />
 	
-	<cfoutput>#viewDocumentation.list(plugins)#</cfoutput>
+	<cfoutput>#viewAPI.list(plugins)#</cfoutput>
 </div>
 
 <div class="grid_6 omega">
@@ -17,5 +17,5 @@
 	
 	<cfset packages = plugDocumentation.getPackages() />
 	
-	<cfoutput>#viewDocumentation.list(packages)#</cfoutput>
+	<cfoutput>#viewAPI.list(packages)#</cfoutput>
 </div>
