@@ -32,4 +32,17 @@
 		
 		<cfreturn results />
 	</cffunction>
+	
+	<cffunction name="getPackages" access="public" returntype="array" output="false">
+		<cfargument name="filter" type="struct" default="#{}#" />
+		
+		<cfset var results = [] />
+		<cfset var package = '' />
+		
+		<!--- TODO Check if the package is within the available package list --->
+		
+		<!--- TODO Query for the components within the package --->
+		
+		<cfreturn results />
+	</cffunction>
 </cfcomponent>
