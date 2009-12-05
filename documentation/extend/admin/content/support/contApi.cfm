@@ -5,9 +5,7 @@
 
 <cfif filter.package NEQ ''>
 	<cfset options = {
-			linkBase = {
-				'_base' = '.support.api.detail'
-			}
+			linkBase = '_base=.support.api.detail'
 		} />
 </cfif>
 
