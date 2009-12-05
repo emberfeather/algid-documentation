@@ -2,7 +2,8 @@
 
 <cfset filter = {
 		'plugin' = theURL.search('plugin'),
-		'package' = theURL.search('package')
+		'package' = theURL.search('package'),
+		'search' = theURL.search('search')
 	} />
 
 <!--- Get the plugin array from the application object --->
