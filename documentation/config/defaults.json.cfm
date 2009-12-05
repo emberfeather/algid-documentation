@@ -10,6 +10,7 @@
 		'inc.view'
 	],
 	showFunctionCode: false,
+	showInterfaces: false,
 	showPrivateFunctions: false,
 	showTableOfContents: true
 }

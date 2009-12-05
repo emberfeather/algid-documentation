@@ -61,7 +61,10 @@
 		
 		<cfset datagrid.addColumn({
 				key = 'package',
-				label = 'package'
+				label = 'package',
+				link = {
+					'package' = 'package',
+				}
 			}) />
 		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />
