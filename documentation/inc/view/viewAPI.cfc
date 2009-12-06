@@ -15,8 +15,8 @@
 	</cffunction>
 	
 	<cffunction name="filter" access="public" returntype="string" output="false">
-		<cfargument name="plugins" type="array" required="true" />
 		<cfargument name="filter" type="struct" default="#{}#" />
+		<cfargument name="plugins" type="array" default="#[]#" />
 		
 		<cfset var filter = '' />
 		<cfset var i = '' />
@@ -32,15 +32,17 @@
 		<cfset filter.addFilter('search') />
 		
 		<!--- Plugin --->
-		<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
-		
-		<cfset options.addOption('All Plugins', '') />
-		
-		<cfloop array="#arguments.plugins#" index="i">
-			<cfset options.addOption(i, i) />
-		</cfloop>
-		
-		<cfset filter.addFilter('plugin', options) />
+		<cfif arrayLen(arguments.plugins)>
+			<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
+			
+			<cfset options.addOption('All Plugins', '') />
+			
+			<cfloop array="#arguments.plugins#" index="i">
+				<cfset options.addOption(i, i) />
+			</cfloop>
+			
+			<cfset filter.addFilter('plugin', options) />
+		</cfif>
 		
 		<cfreturn filter.toHTML(variables.transport.theRequest.managers.singleton.getURL()) />
 	</cffunction>

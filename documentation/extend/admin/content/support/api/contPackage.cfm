@@ -4,7 +4,7 @@
 <cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(packages.recordCount, SESSION.numPerPage, theURL.searchID('onPage')) />
 
 <cfset options = {
-		linkBase = '_base=.support.api.package'
+		linkBase = '_base=.support.api.component'
 	} />
 
 <cfoutput>#viewMaster.datagrid(transport, packages, viewAPI, paginate, filter, options)#</cfoutput>

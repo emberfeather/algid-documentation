@@ -2,7 +2,6 @@
 
 <cfset filter = {
 		'plugin' = theURL.search('plugin'),
-		'package' = theURL.search('package'),
 		'search' = theURL.search('search')
 	} />
 
@@ -10,5 +9,5 @@
 <cfset plugins = transport.theApplication.app.getPlugins() />
 
 <cfoutput>
-	#viewAPI.filter( plugins, filter )#
+	#viewAPI.filter( filter, plugins )#
 </cfoutput>

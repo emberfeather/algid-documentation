@@ -1,7 +1,9 @@
 <navigation>
 	<support position="main">
 		<api position="main">
-			<display position="main"/>
+			<package position="main"/>
+			
+			<component position="main"/>
 		</api>
 		
 		<documentation position="main">
