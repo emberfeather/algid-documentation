@@ -3,6 +3,7 @@
 	},
 	"applicationTransients": {
 		"modComponentForDocumentation": "plugins.documentation.inc.model.modComponent",
+		"modFunctionForDocumentation": "plugins.documentation.inc.model.modFunction",
 		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage",
 		"servComponentForDocumentation": "plugins.documentation.inc.service.servComponent",
 		"servPackageForDocumentation": "plugins.documentation.inc.service.servPackage",
