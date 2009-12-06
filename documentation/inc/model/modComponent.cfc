@@ -5,6 +5,12 @@
 		
 		<cfset super.init(arguments.i18n, arguments.locale) />
 		
+		<!--- Component --->
+		<cfset addAttribute(
+				attribute = 'component',
+				defaultValue = ''
+			) />
+		
 		<!--- Package --->
 		<cfset addAttribute(
 				attribute = 'package',
@@ -12,7 +18,7 @@
 			) />
 		
 		<!--- Set the bundle information for translation --->
-		<cfset setI18NBundle('plugins/documentation/i18n/inc/model', 'modAPI') />
+		<cfset setI18NBundle('plugins/documentation/i18n/inc/model', 'modComponent') />
 		
 		<cfreturn this />
 	</cffunction>

@@ -9,14 +9,14 @@
 		<cfset filterActive = variables.transport.theApplication.factories.transient.getFilterActive(variables.transport.theApplication.managers.singleton.getI18N()) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset filterActive.addBundle('plugins/documentation/i18n/inc/view', 'viewAPI') />
+		<cfset filterActive.addBundle('plugins/documentation/i18n/inc/view', 'viewPackage') />
 		
 		<cfreturn filterActive.toHTML(arguments.filter, variables.transport.theRequest.managers.singleton.getURL()) />
 	</cffunction>
 	
 	<cffunction name="filter" access="public" returntype="string" output="false">
+		<cfargument name="plugins" type="array" required="true" />
 		<cfargument name="filter" type="struct" default="#{}#" />
-		<cfargument name="plugins" type="array" default="#[]#" />
 		
 		<cfset var filter = '' />
 		<cfset var i = '' />
@@ -26,23 +26,21 @@
 		<cfset filter = variables.transport.theApplication.factories.transient.getFilterVertical(variables.transport.theApplication.managers.singleton.getI18N()) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset filter.addBundle('plugins/documentation/i18n/inc/view', 'viewAPI') />
+		<cfset filter.addBundle('plugins/documentation/i18n/inc/view', 'viewPackage') />
 		
 		<!--- Search --->
 		<cfset filter.addFilter('search') />
 		
 		<!--- Plugin --->
-		<cfif arrayLen(arguments.plugins)>
-			<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
-			
-			<cfset options.addOption('All Plugins', '') />
-			
-			<cfloop array="#arguments.plugins#" index="i">
-				<cfset options.addOption(i, i) />
-			</cfloop>
-			
-			<cfset filter.addFilter('plugin', options) />
-		</cfif>
+		<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
+		
+		<cfset options.addOption('All Plugins', '') />
+		
+		<cfloop array="#arguments.plugins#" index="i">
+			<cfset options.addOption(i, i) />
+		</cfloop>
+		
+		<cfset filter.addFilter('plugin', options) />
 		
 		<cfreturn filter.toHTML(variables.transport.theRequest.managers.singleton.getURL()) />
 	</cffunction>
@@ -59,7 +57,7 @@
 		<cfset datagrid = variables.transport.theApplication.factories.transient.getDatagrid(i18n, variables.transport.locale) />
 		
 		<!--- Add the resource bundle for the view --->
-		<cfset datagrid.addBundle('plugins/documentation/i18n/inc/view', 'viewAPI') />
+		<cfset datagrid.addBundle('plugins/documentation/i18n/inc/view', 'viewPackage') />
 		
 		<cfset datagrid.addColumn({
 				key = 'package',
