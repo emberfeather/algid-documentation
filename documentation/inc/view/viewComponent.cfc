@@ -15,7 +15,6 @@
 	</cffunction>
 	
 	<cffunction name="filter" access="public" returntype="string" output="false">
-		<cfargument name="plugins" type="array" required="true" />
 		<cfargument name="filter" type="struct" default="#{}#" />
 		
 		<cfset var filter = '' />
@@ -30,17 +29,6 @@
 		
 		<!--- Search --->
 		<cfset filter.addFilter('search') />
-		
-		<!--- Plugin --->
-		<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
-		
-		<cfset options.addOption('All Plugins', '') />
-		
-		<cfloop array="#arguments.plugins#" index="i">
-			<cfset options.addOption(i, i) />
-		</cfloop>
-		
-		<cfset filter.addFilter('plugin', options) />
 		
 		<cfreturn filter.toHTML(variables.transport.theRequest.managers.singleton.getURL()) />
 	</cffunction>
@@ -60,12 +48,28 @@
 		<cfset datagrid.addBundle('plugins/documentation/i18n/inc/view', 'viewComponent') />
 		
 		<cfset datagrid.addColumn({
+				key = 'component',
+				label = 'component',
+				link = {
+					'component' = 'component',
+					'package' = 'package',
+				}
+			}) />
+		
+		<cfset datagrid.addColumn({
 				key = 'package',
 				label = 'package',
 				link = {
 					'package' = 'package',
 				}
 			}) />
+		
+		<!--- Sort by component name --->
+		<cfquery name="arguments.data" dbtype="query">
+			SELECT component, package
+			FROM arguments.data
+			ORDER BY component ASC, package ASC
+		</cfquery>
 		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />
 	</cffunction>

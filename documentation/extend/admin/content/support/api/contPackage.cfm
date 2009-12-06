@@ -1,10 +1,13 @@
 <!--- Get the plugin packages from the service --->
-<cfset packages = servAPI.getPackages(filter) />
+<cfset components = servComponent.getComponents(theURL.search('package'), filter) />
 
-<cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(packages.recordCount, SESSION.numPerPage, theURL.searchID('onPage')) />
+<cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(components.recordCount, SESSION.numPerPage, theURL.searchID('onPage')) />
 
 <cfset options = {
-		linkBase = '_base=.support.api.component'
+		linkBase = {
+			'component' = '_base=.support.api.component',
+			'package' = '_base=.support.api.package'
+		}
 	} />
 
-<cfoutput>#viewMaster.datagrid(transport, packages, viewAPI, paginate, filter, options)#</cfoutput>
+<cfoutput>#viewMaster.datagrid(transport, components, viewComponent, paginate, filter, options)#</cfoutput>

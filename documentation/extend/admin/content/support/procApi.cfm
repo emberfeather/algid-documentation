@@ -1,4 +1,4 @@
-<cfset servAPI = transport.theApplication.factories.transient.getServAPIForDocumentation(application.app.getDSUpdate(), transport) />
+<cfset servPackage = transport.theApplication.factories.transient.getServPackageForDocumentation(application.app.getDSUpdate(), transport) />
 <cfset plugDocumentation = transport.theApplication.managers.plugins.getDocumentation() />
 
 <cfif CGI.REQUEST_METHOD EQ 'post'>

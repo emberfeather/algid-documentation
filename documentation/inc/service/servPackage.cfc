@@ -86,4 +86,35 @@
 		
 		<cfreturn allPackages />
 	</cffunction>
+	
+	<cffunction name="isValidPackage" access="public" returntype="boolean" output="false">
+		<cfargument name="package" type="string" required="true" />
+		
+		<cfset var allPackages = '' />
+		<cfset var i = '' />
+		<cfset var possiblePackages = '' />
+		<cfset var part = '' />
+		<cfset var results = '' />
+		
+		<!--- Clear of non-valid characters --->
+		<cfset arguments.package = reReplace(arguments.package, '[^a-zA-Z0-9-\.]*', '', 'all') />
+		
+		<!--- Create a list of possible parent packages --->
+		<cfloop list="#arguments.package#" index="i" delimiters=".">
+			<cfset part = listAppend(part, i, '.') />
+			
+			<cfset possiblePackages = listAppend(possiblePackages, part) />
+		</cfloop>
+		
+		<!--- Get all the available packages --->
+		<cfset allPackages = getAvailablePackages() />
+		
+		<cfquery name="results" dbtype="query">
+			SELECT plugin, package
+			FROM allPackages
+			WHERE package IN (<cfqueryparam cfsqltype="cf_sql_varchar" value="#possiblePackages#" list="true" />)
+		</cfquery>
+		
+		<cfreturn results.recordCount GT 0 />
+	</cffunction>
 </cfcomponent>

@@ -18,15 +18,38 @@
 		<cfreturn modComponent />
 	</cffunction>
 	
-	<cffunction name="getComponents" access="public" returntype="array" output="false">
+	<cffunction name="getComponents" access="public" returntype="query" output="false">
+		<cfargument name="package" type="string" required="true" />
 		<cfargument name="filter" type="struct" default="#{}#" />
 		
-		<cfset var results = [] />
+		<cfset var components = '' />
+		<cfset var files = '' />
+		<cfset var offset = '' />
+		<cfset var packageDir = '' />
+		<cfset var packagePath = '' />
 		
-		<!--- TODO Check if the package is within the available package list --->
+		<cfset components = queryNew('package,component') />
 		
-		<!--- TODO Query for the components within the package --->
+		<!--- Convert the package to a path --->
+		<cfset packagePath = '/' & replace(arguments.package, '.', '/', 'all') />
 		
-		<cfreturn results />
+		<!--- Query for the components within the package --->
+		<cfdirectory action="list" directory="#packagePath#" name="files" recurse="true" filter="*.cfc" />
+		
+		<cfif files.recordCount>
+			<!--- Find out the length of the base directory --->
+			<cfset offset = find(packagePath, files.directory) />
+			
+			<cfloop query="files">
+				<cfset packageDir = right(files.directory, len(files.directory) - offset) />
+				
+				<cfset queryAddRow(components) />
+				
+				<cfset querySetCell(components, 'package', replaceList(packageDir, '/,\', '.,.')) />
+				<cfset querySetCell(components, 'component', left(files.name, len(files.name) - 4)) />
+			</cfloop>
+		</cfif>
+		
+		<cfreturn components />
 	</cffunction>
 </cfcomponent>

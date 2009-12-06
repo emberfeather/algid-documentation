@@ -1,4 +1,4 @@
-<cfset viewAPI = transport.theApplication.factories.transient.getViewAPIForDocumentation( transport ) />
+<cfset viewPackage = transport.theApplication.factories.transient.getViewPackageForDocumentation( transport ) />
 
 <cfset filter = {
 		'plugin' = theURL.search('plugin'),
@@ -9,5 +9,5 @@
 <cfset plugins = transport.theApplication.app.getPlugins() />
 
 <cfoutput>
-	#viewAPI.filter( filter, plugins )#
+	#viewPackage.filter( filter, plugins )#
 </cfoutput>
