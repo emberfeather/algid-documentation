@@ -5,10 +5,46 @@
 		
 		<cfset super.init(arguments.i18n, arguments.locale) />
 		
+		<!--- Arguments --->
+		<cfset addAttribute(
+				attribute = 'arguments',
+				defaultValue = []
+			) />
+		
+		<!--- Attributes --->
+		<cfset addAttribute(
+				attribute = 'attributes',
+				defaultValue = {}
+			) />
+		
+		<!--- Comments --->
+		<cfset addAttribute(
+				attribute = 'comments',
+				defaultValue = {}
+			) />
+		
+		<!--- Component --->
+		<cfset addAttribute(
+				attribute = 'component',
+				defaultValue = ''
+			) />
+		
+		<!--- Contents --->
+		<cfset addAttribute(
+				attribute = 'contents',
+				defaultValue = ''
+			) />
+		
 		<!--- Function --->
 		<cfset addAttribute(
 				attribute = 'function',
 				defaultValue = ''
+			) />
+		
+		<!--- Package --->
+		<cfset addAttribute(
+				attribute = 'package',
+				defaultValue = '.'
 			) />
 		
 		<!--- Set the bundle information for translation --->

@@ -1,19 +1,35 @@
 <cfcomponent extends="algid.inc.resource.base.service" output="false">
+	<cffunction name="expandFilename" access="private" returntype="string" output="false">
+		<cfargument name="package" type="string" required="true" />
+		<cfargument name="component" type="string" required="true" />
+		
+		<cfreturn '/' & replace(arguments.package, '.', '/', 'all') & '/' & arguments.component & '.cfc' />
+	</cffunction>
+	
 	<cffunction name="getComponent" access="public" returntype="component" output="false">
 		<cfargument name="currUser" type="component" required="true" />
-		<cfargument name="apiID" type="numeric" required="true" />
+		<cfargument name="package" type="string" required="true" />
+		<cfargument name="component" type="string" required="true" />
 		
-		<cfset var modComponent = '' />
+		<cfset var cfcParser = '' />
 		<cfset var i18n = '' />
+		<cfset var modComponent = '' />
+		<cfset var parsed = '' />
 		<cfset var result = '' />
 		
+		<cfset cfcParser = variables.transport.theApplication.factories.transient.getCfcParse(false) />
 		<cfset i18n = variables.transport.theApplication.managers.singleton.getI18N() />
+		<cfset modComponent = variables.transport.theApplication.factories.transient.getModComponentForDocumentation( i18n, variables.transport.locale ) />
 		
-		<cfset modComponent = variables.transport.theApplication.factories.transient.getModAPIForDocumentation( i18n, variables.transport.locale ) />
+		<!--- Parse the component --->
+		<cfset parsed = cfcParser.parse(expandFilename(arguments.package, arguments.component), 'init') />
 		
-		<!--- TODO Parse the component --->
+		<!--- Set the package and component --->
+		<cfset modComponent.setPackage(arguments.package) />
+		<cfset modComponent.setComponent(arguments.component) />
 		
-		<!--- TODO Deserialized the parsed component into the object --->
+		<!--- Deserialized the parsed component into the object --->
+		<cfset modComponent.deserialize(parsed) />
 		
 		<cfreturn modComponent />
 	</cffunction>
@@ -51,5 +67,12 @@
 		</cfif>
 		
 		<cfreturn components />
+	</cffunction>
+	
+	<cffunction name="isValidComponent" access="public" returntype="boolean" output="false">
+		<cfargument name="package" type="string" required="true" />
+		<cfargument name="component" type="string" required="true" />
+		
+		<cfreturn fileExists(expandFilename(arguments.package, arguments.component)) />
 	</cffunction>
 </cfcomponent>

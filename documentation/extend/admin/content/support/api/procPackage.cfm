@@ -4,10 +4,6 @@
 
 <!--- Need to have a valid package to be on this page --->
 <cfif theURL.search('package') EQ '' OR NOT servPackage.isValidPackage(theURL.search('package'))>
-	<!--- TODO Remove --->
-	<cfdump var="#servPackage.isValidPackage(theURL.search('package'))#" />
-	<cfabort />
-	
 	<cfset theURL.setRedirect('_base', '.support.api') />
 	
 	<cflocation url="#theURL.getRedirect(false)#" addtoken="false" />
