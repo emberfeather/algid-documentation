@@ -237,7 +237,7 @@
 		
 		<!--- Make a list of the arguments and their type --->
 		<cfloop array="#arguments.method.theArguments#" index="item">
-			<cfset argumentList = listAppend(argumentList, item.type & ' ' & item.name) />
+			<cfset argumentList = listAppend(argumentList, item.type & ' ' & item.name & ((NOT structKeyExists(item, 'default') OR item.default EQ '') ? '' : ' = ''' & item.default & '''')) />
 		</cfloop>
 		
 		<!--- Add some whitspace --->
@@ -245,7 +245,9 @@
 		
 		<cfsavecontent variable="html">
 			<cfoutput>
-				<h4 class="#arguments.method.attributes.access#">#arguments.method.attributes.access# #arguments.method.attributes.returnType# #arguments.method.attributes.name#(#argumentList#)</h4>
+				<div class="strong large #arguments.method.attributes.access#">
+					#arguments.method.attributes.access# #arguments.method.attributes.returnType# #arguments.method.attributes.name#(#argumentList#)
+				</div>
 				
 				#showComments(arguments.method.comments)#
 				
@@ -256,8 +258,6 @@
 						</ul>
 					</div>
 				</cfif>
-				
-				#showArguments(arguments.method.theArguments)#
 			</cfoutput>
 		</cfsavecontent>
 		

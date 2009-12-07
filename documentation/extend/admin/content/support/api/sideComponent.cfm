@@ -5,10 +5,6 @@
 
 <!--- Get the plugin packages from the service --->
 <cfset modComponent = servComponent.getComponent(SESSION.managers.singleton.getUser(), theURL.search('package'), theURL.search('component')) />
-
-<cfoutput>
-	#viewComponent.toc( modComponent )#
-</cfoutput>
 	
 <cfif components.recordCount>
 	<cfset options = {
@@ -23,8 +19,6 @@
 		} />
 	
 	<cfoutput>
-			<h3>Other Components</h3>
-			
 			#viewComponent.list( components, options )#
 	</cfoutput>
 </cfif>
