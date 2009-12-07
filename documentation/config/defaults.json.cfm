@@ -12,5 +12,6 @@
 	showFunctionCode: false,
 	showInterfaces: false,
 	showPrivateFunctions: false,
+	showProtectedFunctions: false,
 	showTableOfContents: true
 }

@@ -80,6 +80,10 @@
 		<cfset var html = '' />
 		<cfset var methods = '' />
 		<cfset var method = '' />
+		<cfset var plugDocumentation = '' />
+		
+		<!--- Retreieve the documentation plugin settings --->
+		<cfset plugDocumentation = variables.transport.theApplication.managers.plugins.getDocumentation() />
 		
 		<cfsavecontent variable="html">
 			<cfoutput>
@@ -94,7 +98,9 @@
 					<h3>Constructors</h3>
 					
 					<cfloop array="#methods.constructors#" index="method">
-						#showMethod(method)#
+						<cfif method.attributes.access EQ 'public' or (method.attributes.access EQ 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access EQ 'protected' and plugDocumentation.getShowProtectedFunctions())>
+							#showMethod(method)#
+						</cfif>
 					</cfloop>
 				</cfif>
 				
@@ -103,7 +109,9 @@
 					<h3>Functions</h3>
 					
 					<cfloop array="#methods.functions#" index="method">
-						#showMethod(method)#
+						<cfif method.attributes.access EQ 'public' or (method.attributes.access EQ 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access EQ 'protected' and plugDocumentation.getShowProtectedFunctions())>
+							#showMethod(method)#
+						</cfif>
 					</cfloop>
 				</cfif>
 			</cfoutput>
@@ -129,24 +137,20 @@
 		<cfreturn arguments.value />
 	</cffunction>
 	
-	<cffunction name="showArgument" access="private" returntype="string" output="false">
-		<cfargument name="theArgument" type="struct" default="#{}#" />
+	<cffunction name="showArguments" access="private" returntype="string" output="false">
+		<cfargument name="theArguments" type="array" default="#[]#" />
 		
 		<cfset var item = '' />
 		<cfset var html = '' />
 		
 		<cfsavecontent variable="html">
 			<cfoutput>
-				<h5>#arguments.theArgument.name#</h5>
-				
 				<!--- Check for arguments --->
-				<cfif listLen(arguments.theArgument.attributeOrder)>
+				<cfif arrayLen(arguments.theArguments)>
 					<dl>
-						<cfloop list="#arguments.theArgument.attributeOrder#" index="item">
-							<cfif structKeyExists(arguments.theArgument, item) and arguments.theArgument[item] neq ''>
-								<dt class="grid_3 alpha capitalize clear">#item#</dt>
-								<dd class="grid_6 omega">#formatMeta(item, arguments.theArgument[item])#</dd>
-							</cfif>
+						<cfloop array="#arguments.theArguments#" index="item">
+							<dt class="grid_3 alpha clear<cfif item.required> required</cfif>">#item.type# #item.name#</dt>
+							<dd class="grid_6 omega"><cfif structKeyExists(item, 'hint')>#item.hint#</cfif></dd>
 						</cfloop>
 					</dl>
 					
@@ -227,7 +231,6 @@
 	<cffunction name="showMethod" access="private" returntype="string" output="false">
 		<cfargument name="method" type="struct" default="#{}#" />
 		
-		<cfset var argument = '' />
 		<cfset var argumentList = '' />
 		<cfset var item = '' />
 		<cfset var html = '' />
@@ -242,15 +245,19 @@
 		
 		<cfsavecontent variable="html">
 			<cfoutput>
-				<h4 class="#arguments.method.attributes.access#">#arguments.method.attributes.returnType# #arguments.method.attributes.name#(#argumentList#)</h4>
+				<h4 class="#arguments.method.attributes.access#">#arguments.method.attributes.access# #arguments.method.attributes.returnType# #arguments.method.attributes.name#(#argumentList#)</h4>
 				
 				#showComments(arguments.method.comments)#
 				
-				#showAttributes(arguments.method.attributes)#
+				<cfif structKeyExists(arguments.method.attributes, 'hint')>
+					<div class="message">
+						<ul>
+							<li>#arguments.method.attributes.hint#</li>
+						</ul>
+					</div>
+				</cfif>
 				
-				<cfloop array="#arguments.method.theArguments#" index="argument">
-					#showArgument(argument)#
-				</cfloop>
+				#showArguments(arguments.method.theArguments)#
 			</cfoutput>
 		</cfsavecontent>
 		
