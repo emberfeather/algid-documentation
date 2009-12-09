@@ -69,6 +69,14 @@
 				}
 			}) />
 		
+		<cfset datagrid.addColumn({
+				key = 'plugin',
+				label = 'plugin',
+				link = {
+					'plugin' = 'plugin',
+				}
+			}) />
+		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />
 	</cffunction>
 </cfcomponent>

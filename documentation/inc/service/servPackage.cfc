@@ -5,8 +5,12 @@
 	--->
 	<cffunction name="getAvailablePackages" access="private" returntype="query" output="false">
 		<cfset var allPackages = '' />
+		<cfset var files = '' />
+		<cfset var offset = '' />
 		<cfset var packages = '' />
 		<cfset var package = '' />
+		<cfset var packageDir = '' />
+		<cfset var packagePath = '' />
 		<cfset var plugDocumentation = '' />
 		<cfset var plugins = '' />
 		<cfset var plugin = '' />
@@ -21,10 +25,25 @@
 		
 		<!--- Add all the normal packages without a plugin --->
 		<cfloop array="#packages#" index="package">
-			<cfset queryAddRow(allPackages) />
+			<!--- Convert the package to a path --->
+			<cfset packagePath = '/' & replace(package, '.', '/', 'all') />
 			
-			<cfset querySetCell(allPackages, 'plugin', '') />
-			<cfset querySetCell(allPackages, 'package', package) />
+			<!--- Query for the components within the package --->
+			<cfdirectory action="list" directory="#packagePath#" name="files" recurse="true" filter="*.cfc" />
+			
+			<cfif files.recordCount>
+				<!--- Find out the length of the base directory --->
+				<cfset offset = find(packagePath, files.directory) />
+				
+				<cfloop query="files">
+					<cfset packageDir = right(files.directory, len(files.directory) - offset) />
+					
+					<cfset queryAddRow(allPackages) />
+					
+					<cfset querySetCell(allPackages, 'plugin', '') />
+					<cfset querySetCell(allPackages, 'package', replaceList(packageDir, '/,\', '.,.')) />
+				</cfloop>
+			</cfif>
 		</cfloop>
 		
 		<!--- Get the plugin specific packages --->
@@ -36,12 +55,33 @@
 		<!--- Create the package paths for all of the plugin packages --->
 		<cfloop array="#plugins#" index="plugin">
 			<cfloop array="#packages#" index="package">
-				<cfset queryAddRow(allPackages) />
+				<!--- Convert the package to a path --->
+				<cfset packagePath = '/' & replace('plugins.' & plugin & '.' & package, '.', '/', 'all') />
 				
-				<cfset querySetCell(allPackages, 'plugin', plugin) />
-				<cfset querySetCell(allPackages, 'package', 'plugins.' & plugin & '.' & package) />
+				<!--- Query for the components within the package --->
+				<cfdirectory action="list" directory="#packagePath#" name="files" recurse="true" filter="*.cfc" />
+				
+				<cfif files.recordCount>
+					<!--- Find out the length of the base directory --->
+					<cfset offset = find(packagePath, files.directory) />
+					
+					<cfloop query="files">
+						<cfset packageDir = right(files.directory, len(files.directory) - offset) />
+						
+						<cfset queryAddRow(allPackages) />
+						
+						<cfset querySetCell(allPackages, 'plugin', plugin) />
+						<cfset querySetCell(allPackages, 'package', replaceList(packageDir, '/,\', '.,.')) />
+					</cfloop>
+				</cfif>
 			</cfloop>
 		</cfloop>
+		
+		<!--- Group all the packages together --->
+		<cfquery name="allPackages" dbtype="query">
+			SELECT DISTINCT plugin, package
+			FROM allPackages
+		</cfquery>
 		
 		<cfreturn allPackages />
 	</cffunction>
