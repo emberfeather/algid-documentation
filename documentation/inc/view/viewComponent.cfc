@@ -48,18 +48,18 @@
 		<cfset datagrid.addBundle('plugins/documentation/i18n/inc/view', 'viewComponent') />
 		
 		<cfset datagrid.addColumn({
-				key = 'component',
-				label = 'component',
+				key = 'package',
+				label = 'package',
 				link = {
-					'component' = 'component',
 					'package' = 'package',
 				}
 			}) />
 		
 		<cfset datagrid.addColumn({
-				key = 'package',
-				label = 'package',
+				key = 'component',
+				label = 'component',
 				link = {
+					'component' = 'component',
 					'package' = 'package',
 				}
 			}) />

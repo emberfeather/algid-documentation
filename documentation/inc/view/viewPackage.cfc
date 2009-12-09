@@ -65,7 +65,16 @@
 				key = 'package',
 				label = 'package',
 				link = {
+					'package' = 'package'
+				}
+			}) />
+		
+		<cfset datagrid.addColumn({
+				key = 'component',
+				label = 'component',
+				link = {
 					'package' = 'package',
+					'component' = 'component'
 				}
 			}) />
 		
@@ -73,7 +82,7 @@
 				key = 'plugin',
 				label = 'plugin',
 				link = {
-					'plugin' = 'plugin',
+					'plugin' = 'plugin'
 				}
 			}) />
 		

@@ -15,7 +15,7 @@
 		<cfset var plugins = '' />
 		<cfset var plugin = '' />
 		
-		<cfset allPackages = queryNew('plugin,package') />
+		<cfset allPackages = queryNew('plugin,package,component') />
 		
 		<!--- Retrieve the documentation object --->
 		<cfset plugDocumentation = variables.transport.theApplication.managers.plugins.getDocumentation() />
@@ -25,6 +25,12 @@
 		
 		<!--- Add all the normal packages without a plugin --->
 		<cfloop array="#packages#" index="package">
+			<!--- Add the original package definition --->
+			<cfset queryAddRow(allPackages) />
+			
+			<cfset querySetCell(allPackages, 'plugin', '') />
+			<cfset querySetCell(allPackages, 'package', package) />
+			
 			<!--- Convert the package to a path --->
 			<cfset packagePath = '/' & replace(package, '.', '/', 'all') />
 			
@@ -42,6 +48,7 @@
 					
 					<cfset querySetCell(allPackages, 'plugin', '') />
 					<cfset querySetCell(allPackages, 'package', replaceList(packageDir, '/,\', '.,.')) />
+					<cfset querySetCell(allPackages, 'component', left(files.name, len(files.name) - 4)) />
 				</cfloop>
 			</cfif>
 		</cfloop>
@@ -55,8 +62,16 @@
 		<!--- Create the package paths for all of the plugin packages --->
 		<cfloop array="#plugins#" index="plugin">
 			<cfloop array="#packages#" index="package">
+				<cfset packagePath = 'plugins.' & plugin & '.' & package />
+				
+				<!--- Add the original package definition --->
+				<cfset queryAddRow(allPackages) />
+				
+				<cfset querySetCell(allPackages, 'plugin', plugin) />
+				<cfset querySetCell(allPackages, 'package', packagePath) />
+				
 				<!--- Convert the package to a path --->
-				<cfset packagePath = '/' & replace('plugins.' & plugin & '.' & package, '.', '/', 'all') />
+				<cfset packagePath = '/' & replace(packagePath, '.', '/', 'all') />
 				
 				<!--- Query for the components within the package --->
 				<cfdirectory action="list" directory="#packagePath#" name="files" recurse="true" filter="*.cfc" />
@@ -72,16 +87,11 @@
 						
 						<cfset querySetCell(allPackages, 'plugin', plugin) />
 						<cfset querySetCell(allPackages, 'package', replaceList(packageDir, '/,\', '.,.')) />
+						<cfset querySetCell(allPackages, 'component', left(files.name, len(files.name) - 4)) />
 					</cfloop>
 				</cfif>
 			</cfloop>
 		</cfloop>
-		
-		<!--- Group all the packages together --->
-		<cfquery name="allPackages" dbtype="query">
-			SELECT DISTINCT plugin, package
-			FROM allPackages
-		</cfquery>
 		
 		<cfreturn allPackages />
 	</cffunction>
@@ -99,7 +109,7 @@
 		<!--- Check if the packages are in the right plugin --->
 		<cfif structKeyExists(arguments.filter, 'plugin') AND arguments.filter.plugin NEQ ''>
 			<cfquery name="allPackages" dbtype="query">
-				SELECT plugin, package
+				SELECT plugin, package, component
 				FROM allPackages
 				WHERE plugin = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.filter.plugin#" />
 			</cfquery>
@@ -108,7 +118,7 @@
 		<!--- Check if the packages are within the package --->
 		<cfif structKeyExists(arguments.filter, 'package') AND arguments.filter.package NEQ ''>
 			<cfquery name="allPackages" dbtype="query">
-				SELECT plugin, package
+				SELECT plugin, package, component
 				FROM allPackages
 				WHERE package LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.filter.package#%" />
 			</cfquery>
@@ -117,12 +127,19 @@
 		<!--- Check if the packages match the search --->
 		<cfif structKeyExists(arguments.filter, 'search') AND arguments.filter.search NEQ ''>
 			<cfquery name="allPackages" dbtype="query">
-				SELECT plugin, package
+				SELECT plugin, package, component
 				FROM allPackages
 				WHERE package LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#arguments.filter.search#%" />
 					OR plugin LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#arguments.filter.search#%" />
 			</cfquery>
 		</cfif>
+		
+		<!--- Sort the packages --->
+		<cfquery name="allPackages" dbtype="query">
+			SELECT plugin, package, component
+			FROM allPackages
+			ORDER BY plugin, package, component
+		</cfquery>
 		
 		<cfreturn allPackages />
 	</cffunction>
