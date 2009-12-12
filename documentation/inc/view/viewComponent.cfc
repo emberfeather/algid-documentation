@@ -68,7 +68,7 @@
 		<cfquery name="arguments.data" dbtype="query">
 			SELECT component, package
 			FROM arguments.data
-			ORDER BY component ASC, package ASC
+			orDER BY component ASC, package ASC
 		</cfquery>
 		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />
@@ -98,7 +98,7 @@
 					<h3>Constructors</h3>
 					
 					<cfloop array="#methods.constructors#" index="method">
-						<cfif method.attributes.access EQ 'public' or (method.attributes.access EQ 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access EQ 'protected' and plugDocumentation.getShowProtectedFunctions())>
+						<cfif method.attributes.access eq 'public' or (method.attributes.access eq 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access eq 'protected' and plugDocumentation.getShowProtectedFunctions())>
 							#showMethod(method)#
 						</cfif>
 					</cfloop>
@@ -109,7 +109,7 @@
 					<h3>Functions</h3>
 					
 					<cfloop array="#methods.functions#" index="method">
-						<cfif method.attributes.access EQ 'public' or (method.attributes.access EQ 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access EQ 'protected' and plugDocumentation.getShowProtectedFunctions())>
+						<cfif method.attributes.access eq 'public' or (method.attributes.access eq 'private' and plugDocumentation.getShowPrivateFunctions()) or (method.attributes.access eq 'protected' and plugDocumentation.getShowProtectedFunctions())>
 							#showMethod(method)#
 						</cfif>
 					</cfloop>
@@ -237,7 +237,7 @@
 		
 		<!--- Make a list of the arguments and their type --->
 		<cfloop array="#arguments.method.theArguments#" index="item">
-			<cfset argumentList = listAppend(argumentList, item.type & ' ' & item.name & ((NOT structKeyExists(item, 'default') OR item.default EQ '') ? '' : ' = ''' & item.default & '''')) />
+			<cfset argumentList = listAppend(argumentList, item.type & ' ' & item.name & ((not structKeyExists(item, 'default') or item.default eq '') ? '' : ' = ''' & item.default & '''')) />
 		</cfloop>
 		
 		<!--- Add some whitspace --->

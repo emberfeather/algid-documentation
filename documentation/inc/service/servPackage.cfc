@@ -107,7 +107,7 @@
 		<!--- Filter down the list of packages --->
 		
 		<!--- Check if the packages are in the right plugin --->
-		<cfif structKeyExists(arguments.filter, 'plugin') AND arguments.filter.plugin NEQ ''>
+		<cfif structKeyExists(arguments.filter, 'plugin') and arguments.filter.plugin neq ''>
 			<cfquery name="allPackages" dbtype="query">
 				SELECT plugin, package, component
 				FROM allPackages
@@ -116,7 +116,7 @@
 		</cfif>
 		
 		<!--- Check if the packages are within the package --->
-		<cfif structKeyExists(arguments.filter, 'package') AND arguments.filter.package NEQ ''>
+		<cfif structKeyExists(arguments.filter, 'package') and arguments.filter.package neq ''>
 			<cfquery name="allPackages" dbtype="query">
 				SELECT plugin, package, component
 				FROM allPackages
@@ -125,12 +125,12 @@
 		</cfif>
 		
 		<!--- Check if the packages match the search --->
-		<cfif structKeyExists(arguments.filter, 'search') AND arguments.filter.search NEQ ''>
+		<cfif structKeyExists(arguments.filter, 'search') and arguments.filter.search neq ''>
 			<cfquery name="allPackages" dbtype="query">
 				SELECT plugin, package, component
 				FROM allPackages
 				WHERE package LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#arguments.filter.search#%" />
-					OR plugin LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#arguments.filter.search#%" />
+					or plugin LIKE <cfqueryparam cfsqltype="cf_sql_varchar" value="%#arguments.filter.search#%" />
 			</cfquery>
 		</cfif>
 		
@@ -138,7 +138,7 @@
 		<cfquery name="allPackages" dbtype="query">
 			SELECT plugin, package, component
 			FROM allPackages
-			ORDER BY plugin, package, component
+			orDER BY plugin, package, component
 		</cfquery>
 		
 		<cfreturn allPackages />
@@ -172,6 +172,6 @@
 			WHERE package IN (<cfqueryparam cfsqltype="cf_sql_varchar" value="#possiblePackages#" list="true" />)
 		</cfquery>
 		
-		<cfreturn results.recordCount GT 0 />
+		<cfreturn results.recordCount gt 0 />
 	</cffunction>
 </cfcomponent>
