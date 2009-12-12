@@ -1,7 +1,7 @@
 <!--- Get the plugin packages from the service --->
 <cfset components = servComponent.getComponents(theURL.search('package'), filter) />
 
-<cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(components.recordCount, SESSION.numPerPage, theURL.searchID('onPage')) />
+<cfset paginate = variables.transport.theApplication.factories.transient.getPaginate(components.recordCount, session.numPerPage, theURL.searchID('onPage')) />
 
 <cfset options = {
 		linkBase = {
