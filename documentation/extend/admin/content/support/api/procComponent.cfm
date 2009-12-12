@@ -26,10 +26,10 @@
 <!--- Add the component to the title --->
 <cfset template.addLevel(theURL.search('component'), theURL.search('component'), theURL.get()) />
 
-<cfif CGI.ReqUEST_METHOD eq 'post'>
+<cfif cgi.request_method eq 'post'>
 	<!--- Update the URL and redirect --->
-	<cfloop list="#ForM.fieldnames#" index="field">
-		<cfset theURL.set('', field, ForM[field]) />
+	<cfloop list="#form.fieldnames#" index="field">
+		<cfset theURL.set('', field, form[field]) />
 	</cfloop>
 	
 	<cflocation url="#theURL.get('', false)#" addtoken="false" />
