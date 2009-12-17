@@ -19,7 +19,7 @@
 		
 		<cfset cfcParser = variables.transport.theApplication.factories.transient.getCfcParse(false) />
 		<cfset i18n = variables.transport.theApplication.managers.singleton.getI18N() />
-		<cfset modComponent = variables.transport.theApplication.factories.transient.getModComponentForDocumentation( i18n, variables.transport.theSession.locale ) />
+		<cfset modComponent = variables.transport.theApplication.factories.transient.getModComponentForDocumentation( i18n, variables.transport.theSession.managers.singleton.getSession().getLocale() ) />
 		
 		<!--- Parse the component --->
 		<cfset parsed = cfcParser.parse(expandFilename(arguments.package, arguments.component), 'init') />

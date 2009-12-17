@@ -1,5 +1,5 @@
-<cfset servPackage = transport.theApplication.factories.transient.getServPackageForDocumentation(application.app.getDSUpdate(), transport) />
-<cfset plugDocumentation = transport.theApplication.managers.plugins.getDocumentation() />
+<cfset servPackage = transport.theApplication.factories.transient.getServPackageForDocumentation(transport.theApplication.managers.singleton.getApplication().getDSUpdate(), transport) />
+<cfset plugDocumentation = transport.theApplication.managers.plugin.getDocumentation() />
 
 <cfif cgi.request_method eq 'post'>
 	<!--- Update the URL and redirect --->

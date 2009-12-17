@@ -18,7 +18,7 @@
 		<cfset allPackages = queryNew('plugin,package,component') />
 		
 		<!--- Retrieve the documentation object --->
-		<cfset plugDocumentation = variables.transport.theApplication.managers.plugins.getDocumentation() />
+		<cfset plugDocumentation = variables.transport.theApplication.managers.plugin.getDocumentation() />
 		
 		<!--- Start with a copy of the normal packages to the array --->
 		<cfset packages = plugDocumentation.getPackages() />
@@ -57,7 +57,7 @@
 		<cfset packages = plugDocumentation.getPluginPackages() />
 		
 		<!--- Get the list of plugins --->
-		<cfset plugins = variables.transport.theApplication.app.getPlugins() />
+		<cfset plugins = variables.transport.theApplication.managers.singleton.getApplication().getPlugins() />
 		
 		<!--- Create the package paths for all of the plugin packages --->
 		<cfloop array="#plugins#" index="plugin">
