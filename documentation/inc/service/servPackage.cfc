@@ -138,7 +138,7 @@
 		<cfquery name="allPackages" dbtype="query">
 			SELECT plugin, package, component
 			FROM allPackages
-			orDER BY plugin, package, component
+			ORDER BY plugin, package, component
 		</cfquery>
 		
 		<cfreturn allPackages />

@@ -68,7 +68,7 @@
 		<cfquery name="arguments.data" dbtype="query">
 			SELECT component, package
 			FROM arguments.data
-			orDER BY component ASC, package ASC
+			ORDER BY component ASC, package ASC
 		</cfquery>
 		
 		<cfreturn datagrid.toHTML( arguments.data, arguments.options ) />
