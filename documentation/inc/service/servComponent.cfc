@@ -14,6 +14,7 @@
 		<cfset var cfcParser = '' />
 		<cfset var i18n = '' />
 		<cfset var modComponent = '' />
+		<cfset var objectSerial = '' />
 		<cfset var parsed = '' />
 		<cfset var result = '' />
 		
@@ -29,7 +30,9 @@
 		<cfset modComponent.setComponent(arguments.component) />
 		
 		<!--- Deserialized the parsed component into the object --->
-		<cfset modComponent.deserialize(parsed) />
+		<cfset objectSerial = variables.transport.theApplication.managers.singleton.getObjectSerial() />
+		
+		<cfset objectSerial.deserialize(parsed, modComponent) />
 		
 		<cfreturn modComponent />
 	</cffunction>
