@@ -6,7 +6,7 @@
 <cfif theURL.search('package') eq '' or not servPackage.isValidPackage(theURL.search('package'))>
 	<cfset theURL.setRedirect('_base', '.support.api') />
 	
-	<cflocation url="#theURL.getRedirect(false)#" addtoken="false" />
+	<cfset theURL.redirectRedirect() />
 </cfif>
 
 <!--- Add the package to the title --->
@@ -18,5 +18,5 @@
 		<cfset theURL.set('', field, form[field]) />
 	</cfloop>
 	
-	<cflocation url="#theURL.get('', false)#" addtoken="false" />
+	<cfset theURL.redirect() />
 </cfif>
