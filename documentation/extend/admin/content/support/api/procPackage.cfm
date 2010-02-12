@@ -4,7 +4,7 @@
 
 <!--- Need to have a valid package to be on this page --->
 <cfif theURL.search('package') eq '' or not servPackage.isValidPackage(theURL.search('package'))>
-	<cfset theURL.setRedirect('_base', '.support.api') />
+	<cfset theURL.setRedirect('_base', '/support/api') />
 	
 	<cfset theURL.redirectRedirect() />
 </cfif>

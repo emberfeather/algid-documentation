@@ -5,9 +5,9 @@
 
 <cfset options = {
 		linkBase = {
-			'component' = '_base=.support.api.component',
-			'package' = '_base=.support.api.package',
-			'plugin' = '_base=.support.api'
+			'component' = '_base=/support/api/component',
+			'package' = '_base=/support/api/package',
+			'plugin' = '_base=/support/api'
 		}
 	} />
 

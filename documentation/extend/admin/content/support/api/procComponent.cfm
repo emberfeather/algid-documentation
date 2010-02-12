@@ -4,14 +4,14 @@
 
 <!--- Need to have a valid package to be on this page --->
 <cfif theURL.search('package') eq '' or not servPackage.isValidPackage(theURL.search('package'))>
-	<cfset theURL.setRedirect('_base', '.support.api') />
+	<cfset theURL.setRedirect('_base', '/support/api') />
 	
 	<cfset theURL.redirectRedirect() />
 </cfif>
 
 <!--- Need to have a valid component in the package --->
 <cfif not servComponent.isValidComponent(theURL.search('package'), theURL.search('component'))>
-	<cfset theURL.setRedirect('_base', '.support.api.package') />
+	<cfset theURL.setRedirect('_base', '/support/api/package') />
 	<cfset theURL.removeRedirect('component') />
 	
 	<cfset theURL.redirectRedirect() />
@@ -19,7 +19,7 @@
 
 <!--- Add the package to the title --->
 <cfset theURL.cleanPackage() />
-<cfset theURL.setPackage('_base', '.support.api.package') />
+<cfset theURL.setPackage('_base', '/support/api/package') />
 <cfset theURL.setPackage('package', theURL.search('package')) />
 <cfset template.addLevel(theURL.search('package'), theURL.search('package'), theURL.getPackage()) />
 
