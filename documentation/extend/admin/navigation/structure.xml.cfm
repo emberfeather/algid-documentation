@@ -1,7 +1,9 @@
 <navigation>
 	<admin position="main">
 		<app position="main">
-			<transient position="main"/>
+			<transient position="main">
+				<list position="action"/>
+			</transient>
 		</app>
 	</admin>
 	
