@@ -9,15 +9,19 @@
 	
 	<support position="main">
 		<api position="main">
-			<package position="main"/>
+			<list position="action"/>
+			
+			<package position="main">
+				<list position="action"/>
+			</package>
 			
 			<component position="main"/>
 		</api>
 		
 		<documentation position="main">
-			<display position="main">
-				<source position="main"/>
-			</display>
+			<display position="action"/>
+			<list position="action"/>
+			<source position="action"/>
 		</documentation>
 		
 		<navigation position="main">
