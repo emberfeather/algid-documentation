@@ -1,4 +1,10 @@
 <navigation>
+	<admin position="main">
+		<app position="main">
+			<transient position="main"/>
+		</app>
+	</admin>
+	
 	<support position="main">
 		<api position="main">
 			<package position="main"/>
@@ -11,5 +17,9 @@
 				<source position="main"/>
 			</display>
 		</documentation>
+		
+		<navigation position="main">
+			<list position="action"/>
+		</navigation>
 	</support>
 </navigation>
