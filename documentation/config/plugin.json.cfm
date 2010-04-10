@@ -7,8 +7,10 @@
 		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage",
 		"servComponentForDocumentation": "plugins.documentation.inc.service.servComponent",
 		"servPackageForDocumentation": "plugins.documentation.inc.service.servPackage",
+		"servTransientForDocumentation": "plugins.documentation.inc.service.servTransient",
 		"viewComponentForDocumentation": "plugins.documentation.inc.view.viewComponent",
-		"viewPackageForDocumentation": "plugins.documentation.inc.view.viewPackage"
+		"viewPackageForDocumentation": "plugins.documentation.inc.view.viewPackage",
+		"viewTransientForDocumentation": "plugins.documentation.inc.view.viewTransient"
 	},
 	"i18n": {
 		"locales": [
