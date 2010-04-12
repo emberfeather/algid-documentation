@@ -49,6 +49,8 @@
 		<cfif arguments.locales.recordCount>
 			<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
 			
+			<cfset options.addOption('Current', '') />
+			
 			<cfloop query="arguments.locales">
 				<cfset options.addOption(arguments.locales.locale, arguments.locales.locale) />
 			</cfloop>
