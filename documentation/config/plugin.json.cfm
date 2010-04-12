@@ -6,9 +6,11 @@
 		"modFunctionForDocumentation": "plugins.documentation.inc.model.modFunction",
 		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage",
 		"servComponentForDocumentation": "plugins.documentation.inc.service.servComponent",
+		"servNavigationForDocumentation": "plugins.documentation.inc.service.servNavigation",
 		"servPackageForDocumentation": "plugins.documentation.inc.service.servPackage",
 		"servTransientForDocumentation": "plugins.documentation.inc.service.servTransient",
 		"viewComponentForDocumentation": "plugins.documentation.inc.view.viewComponent",
+		"viewNavigationForDocumentation": "plugins.documentation.inc.view.viewNavigation",
 		"viewPackageForDocumentation": "plugins.documentation.inc.view.viewPackage",
 		"viewTransientForDocumentation": "plugins.documentation.inc.view.viewTransient"
 	},
