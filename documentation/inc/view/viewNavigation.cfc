@@ -36,6 +36,7 @@
 		<cfif arrayLen(arguments.plugins)>
 			<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
 			
+			<!--- TODO use i18n --->
 			<cfset options.addOption('All Plugins', '') />
 			
 			<cfloop array="#arguments.plugins#" index="i">
@@ -49,6 +50,7 @@
 		<cfif arguments.locales.recordCount>
 			<cfset options = variables.transport.theApplication.factories.transient.getOptions() />
 			
+			<!--- TODO use i18n --->
 			<cfset options.addOption('Current', '') />
 			
 			<cfloop query="arguments.locales">
