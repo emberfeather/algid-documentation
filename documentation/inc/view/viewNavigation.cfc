@@ -15,7 +15,7 @@
 	</cffunction>
 	
 	<cffunction name="filter" access="public" returntype="string" output="false">
-		<cfargument name="filter" type="struct" default="#{}#" />
+		<cfargument name="values" type="struct" default="#{}#" />
 		<cfargument name="plugins" type="array" default="#[]#" />
 		<cfargument name="locales" type="query" default="#queryNew('locale')#" />
 		
@@ -60,7 +60,7 @@
 			<cfset filter.addFilter('locale', options) />
 		</cfif>
 		
-		<cfreturn filter.toHTML(variables.transport.theRequest.managers.singleton.getURL()) />
+		<cfreturn filter.toHTML(variables.transport.theRequest.managers.singleton.getURL(), arguments.values) />
 	</cffunction>
 	
 	<cffunction name="datagrid" access="public" returntype="string" output="false">
