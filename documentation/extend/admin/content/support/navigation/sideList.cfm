@@ -1,4 +1,4 @@
-<cfset viewNavigation = transport.theApplication.factories.transient.getViewNavigationForDocumentation( transport ) />
+<cfset viewNavigation = views.get('documentation', 'navigation') />
 
 <cfset filter = {
 		'locale' = theURL.search('locale'),

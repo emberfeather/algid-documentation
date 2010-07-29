@@ -1,4 +1,4 @@
-<cfset viewComponent = transport.theApplication.factories.transient.getViewComponentForDocumentation( transport ) />
+<cfset viewComponent = views.get('documentation', 'component') />
 
 <!--- Get the components to list out --->
 <cfset components = servComponent.getComponents(theURL.search('package')) />

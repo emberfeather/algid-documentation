@@ -4,11 +4,7 @@
 	"applicationTransients": {
 		"modComponentForDocumentation": "plugins.documentation.inc.model.modComponent",
 		"modFunctionForDocumentation": "plugins.documentation.inc.model.modFunction",
-		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage",
-		"viewComponentForDocumentation": "plugins.documentation.inc.view.viewComponent",
-		"viewNavigationForDocumentation": "plugins.documentation.inc.view.viewNavigation",
-		"viewPackageForDocumentation": "plugins.documentation.inc.view.viewPackage",
-		"viewTransientForDocumentation": "plugins.documentation.inc.view.viewTransient"
+		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage"
 	},
 	"i18n": {
 		"locales": [

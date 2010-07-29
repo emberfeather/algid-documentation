@@ -1,4 +1,4 @@
-<cfset viewTransient = transport.theApplication.factories.transient.getViewTransientForDocumentation( transport ) />
+<cfset viewTransient = views.get('documentation', 'transient') />
 
 <cfset filter = {
 		'search' = theURL.search('search')
