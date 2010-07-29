@@ -1,4 +1,4 @@
-<cfset servTransient = transport.theApplication.factories.transient.getServTransientForDocumentation(transport.theApplication.managers.singleton.getApplication().getDSUpdate(), transport) />
+<cfset servTransient = services.get('documentation', 'transient') />
 
 <cfif cgi.request_method eq 'post'>
 	<!--- Update the URL and redirect --->
