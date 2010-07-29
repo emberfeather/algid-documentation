@@ -2,9 +2,6 @@
 	"applicationSingletons": {
 	},
 	"applicationTransients": {
-		"modComponentForDocumentation": "plugins.documentation.inc.model.modComponent",
-		"modFunctionForDocumentation": "plugins.documentation.inc.model.modFunction",
-		"modPackageForDocumentation": "plugins.documentation.inc.model.modPackage"
 	},
 	"i18n": {
 		"locales": [
