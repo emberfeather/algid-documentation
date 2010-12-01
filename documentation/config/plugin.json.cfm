@@ -14,6 +14,7 @@
 		'cf-compendium.inc.resource',
 		'algid.inc.resource'
 	],
+	"plugin": "Documentation",
 	"pluginPackages": [
 		'inc.model',
 		'inc.resource',
