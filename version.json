@@ -1,6 +1,8 @@
 {
-	"releaseNotes": "http://github.com/emberfeather/algid-documentation/wiki/Release-Notes",
 	"archive": "http://github.com/emberfeather/algid-documentation/tarball/0.1.0",
+	"key": "documentation",
+	"releaseNotes": "http://github.com/emberfeather/algid-documentation/wiki/Release-Notes",
+	"title": "Documentation",
 	"URL": "http://github.com/emberfeather/algid-documentation",
 	"version": "0.1.0"
 }
