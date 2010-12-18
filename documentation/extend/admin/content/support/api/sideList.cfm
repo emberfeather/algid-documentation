@@ -1,4 +1,4 @@
-<cfset viewPackage = transport.theApplication.factories.transient.getViewPackageForDocumentation( transport ) />
+<cfset viewPackage = views.get('documentation', 'package') />
 
 <cfset filter = {
 		'plugin' = theURL.search('plugin'),

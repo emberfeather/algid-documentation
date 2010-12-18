@@ -1,5 +1,5 @@
-<cfset servPackage = transport.theApplication.factories.transient.getServPackageForDocumentation(transport.theApplication.managers.singleton.getApplication().getDSUpdate(), transport) />
-<cfset servComponent = transport.theApplication.factories.transient.getServComponentForDocumentation(transport.theApplication.managers.singleton.getApplication().getDSUpdate(), transport) />
+<cfset servPackage = services.get('documentation', 'package') />
+<cfset servComponent = services.get('documentation', 'component') />
 <cfset plugDocumentation = transport.theApplication.managers.plugin.getDocumentation() />
 
 <!--- Need to have a valid package to be on this page --->

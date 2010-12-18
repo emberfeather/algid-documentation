@@ -12,15 +12,14 @@
 		<cfargument name="component" type="string" required="true" />
 		
 		<cfset var cfcParser = '' />
-		<cfset var i18n = '' />
 		<cfset var modComponent = '' />
-		<cfset var objectSerial = '' />
+		<cfset var modelSerial = '' />
 		<cfset var parsed = '' />
 		<cfset var result = '' />
 		
 		<cfset cfcParser = variables.transport.theApplication.factories.transient.getCfcParse(false) />
-		<cfset i18n = variables.transport.theApplication.managers.singleton.getI18N() />
-		<cfset modComponent = variables.transport.theApplication.factories.transient.getModComponentForDocumentation( i18n, variables.transport.theSession.managers.singleton.getSession().getLocale() ) />
+		
+		<cfset modComponent = getModel('documentation', 'component') />
 		
 		<!--- Parse the component --->
 		<cfset parsed = cfcParser.parse(expandFilename(arguments.package, arguments.component), 'init') />
@@ -30,9 +29,9 @@
 		<cfset modComponent.setComponent(arguments.component) />
 		
 		<!--- Deserialized the parsed component into the object --->
-		<cfset objectSerial = variables.transport.theApplication.managers.singleton.getObjectSerial() />
+		<cfset modelSerial = variables.transport.theApplication.factories.transient.getModelSerial(variables.transport) />
 		
-		<cfset objectSerial.deserialize(parsed, modComponent) />
+		<cfset modelSerial.deserialize(parsed, modComponent) />
 		
 		<cfreturn modComponent />
 	</cffunction>

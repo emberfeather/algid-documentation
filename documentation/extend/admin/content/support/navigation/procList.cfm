@@ -1,4 +1,4 @@
-<cfset servNavigation = transport.theApplication.factories.transient.getServNavigationForDocumentation(transport.theApplication.managers.singleton.getApplication().getDSUpdate(), transport) />
+<cfset servNavigation = services.get('documentation', 'navigation') />
 
 <cfif cgi.request_method eq 'post'>
 	<!--- Update the URL and redirect --->
