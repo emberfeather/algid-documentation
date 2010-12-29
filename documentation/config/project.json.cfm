@@ -22,7 +22,7 @@
 		'inc.view'
 	],
 	"prerequisites": {
-		"algid": "0.1.1",
+		"algid": "0.1.3",
 		"admin": "0.1.1"
 	},
 	"requestSingletons": {
