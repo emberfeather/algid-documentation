@@ -6,13 +6,13 @@
 		<cfset super.init(arguments.i18n, arguments.locale) />
 		
 		<!--- Package --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'package',
 				defaultValue = '.'
 			) />
 		
 		<!--- Set the bundle information for translation --->
-		<cfset addBundle('plugins/documentation/i18n/inc/model', 'modPackage') />
+		<cfset add__bundle('plugins/documentation/i18n/inc/model', 'modPackage') />
 		
 		<cfreturn this />
 	</cffunction>
