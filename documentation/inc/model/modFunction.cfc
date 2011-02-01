@@ -6,49 +6,49 @@
 		<cfset super.init(arguments.i18n, arguments.locale) />
 		
 		<!--- Arguments --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'arguments',
 				defaultValue = []
 			) />
 		
 		<!--- Attributes --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'attributes',
 				defaultValue = {}
 			) />
 		
 		<!--- Comments --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'comments',
 				defaultValue = {}
 			) />
 		
 		<!--- Component --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'component',
 				defaultValue = ''
 			) />
 		
 		<!--- Contents --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'contents',
 				defaultValue = ''
 			) />
 		
 		<!--- Function --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'function',
 				defaultValue = ''
 			) />
 		
 		<!--- Package --->
-		<cfset addAttribute(
+		<cfset add__attribute(
 				attribute = 'package',
 				defaultValue = '.'
 			) />
 		
 		<!--- Set the bundle information for translation --->
-		<cfset addBundle('plugins/documentation/i18n/inc/model', 'modFunction') />
+		<cfset add__bundle('plugins/documentation/i18n/inc/model', 'modFunction') />
 		
 		<cfreturn this />
 	</cffunction>
