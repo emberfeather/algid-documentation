@@ -4,7 +4,7 @@
 <cfset components = servComponent.getComponents(theURL.search('package')) />
 
 <!--- Get the plugin packages from the service --->
-<cfset modComponent = servComponent.getComponent(session.managers.singleton.getUser(), theURL.search('package'), theURL.search('component')) />
+<cfset modComponent = servComponent.getComponent(theURL.search('package'), theURL.search('component')) />
 	
 <cfif components.recordCount>
 	<cfset options = {

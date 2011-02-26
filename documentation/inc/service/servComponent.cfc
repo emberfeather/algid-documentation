@@ -7,7 +7,6 @@
 	</cffunction>
 	
 	<cffunction name="getComponent" access="public" returntype="component" output="false">
-		<cfargument name="currUser" type="component" required="true" />
 		<cfargument name="package" type="string" required="true" />
 		<cfargument name="component" type="string" required="true" />
 		
